@@ -131,7 +131,7 @@ const Navbar = () => {
                                     <Link href="/store/orders" className="block px-4 py-2 hover:bg-slate-100 whitespace-nowrap">
                                         Mis Compras
                                     </Link>
-                                    <Link href="/store/sell-products" className="block px-4 py-2 hover:bg-slate-100 whitespace-nowrap">
+                                    <Link href="/store/Sell-products" className="block px-4 py-2 hover:bg-slate-100 whitespace-nowrap">
                                         Mis Ventas
                                     </Link>
                                     <Link href="/store/decline-BuyOrders" className="block px-4 py-2 hover:bg-slate-100 whitespace-nowrap">
