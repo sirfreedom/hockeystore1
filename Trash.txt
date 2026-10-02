@@ -1,0 +1,237 @@
+import { NewProducts } from '@/Api/ProductHelper';
+import DashboardReviews from "@/components/DashboardReviews";
+import { useEffect, useState } from "react"
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { getKey } from "@/Api/BaseHelper";
+import { setKey } from "@/Api/BaseHelper";
+import Link from "next/link";
+import CheckLogin from "@/components/CheckLogin";
+
+import useUserStore from '@/lib/features/user/useUserStore';
+
+
+const { user ,setUser, setExpiresAt, setIsValid, clearUser,checkAuth,isUserValid,isExpired } = useUserStore();
+
+
+    const Token = useUserStore.getState().token;
+    const UserData = useUserStore.getState().user;
+    const isExpired = useUserStore.getState().isExpired();
+
+toLocaleString('es-ES')
+toLocaleString('es-AR', { minimumFractionDigits: 0 })
+
+        if (isExpired) 
+        {
+            toast.error('Es necesario loguarte para confirmar la orden', { duration: 3000 });
+            return;
+        }
+
+
+                                    <button
+                                            onClick={() => handlePlaceOrder()}
+                                            disabled={isSubmitting}
+                                            className={`w-full text-white py-2.5 rounded transition-all ${isSubmitting
+                                                ? 'bg-slate-400 cursor-not-allowed'
+                                                : 'bg-slate-700 hover:bg-slate-900 active:scale-95'
+                                                }`}
+                                        >
+                                            {isSubmitting ? 'Procesando...' : 'Confirmar Orden'}
+                                        </button>
+
+
+
+
+
+const router = useRouter();
+
+
+
+
+//import { getKey } from "@/Api/BaseHelper";
+
+     NewProducts().then(data => {
+            setProducts(data);
+        });
+
+
+
+
+
+
+    Insert().then(data => {
+        });
+
+
+*
+
+
+    useEffect(() => {
+
+        
+
+    }, [])
+
+
+Actualizar valores
+
+    const update = (IdProductStore) => {
+        setOrders(prev =>
+            prev.map(item => item.idproductstore === IdProductStore ? { ...item, buyerhasvoted: 1 } : item)
+        );
+    };
+
+    */
+
+
+/*
+
+delete
+
+    setProducts(prev => prev.filter(x => x.id !== id));
+
+
+              {order?.map((item, index) => (
+                                                
+                                                ))}
+
+
+
+agregar
+
+
+    const SaveQuestion = (questiontext) => {
+
+        setQuestions(prev => [
+        ...prev, // Copia todas las preguntas anteriores
+        {
+            id: Date.now(), // Buena práctica: una clave única
+            ts: Date.now(),
+            questiontext: questiontext,
+            userimgtext: LogoUser,
+            username: UserName
+        }
+    ]);
+    }
+
+
+        if (data?.status === 200) {
+
+
+        }
+
+
+        if (data?.status === 201) {
+            toast.success('Producto agregado correctamente',{duration: 20000 });
+            router.push('manage-product');
+        }
+
+
+            if (data?.status === 400) {
+                toast.error('Error. intente nuevamente mas tarde..', { duration: 8000 });
+                router.push('/');
+            }
+
+            if (data?.status === 422) {
+                toast.error(data.error, { duration: 15000 });
+                return;
+            }
+
+            if (data?.status === 401) {
+                toast.error('No autorizado. Por favor, inicia sesión nuevamente.', { duration: 8000 });
+                localStorage.clear();
+                router.push('/');
+            }
+
+            if (data?.status === 500) {
+                toast.error('Error critico, consulte al sistema, luego.', { duration: 8000 });
+                router.push('/');
+            }
+
+
+className={`p-1 select-none transition-colors ${ (isButtonDisabled || UserName === '' )? 'opacity-50 cursor-not-allowed' : 'hover:text-red-500' }`}
+
+const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+   setIsButtonDisabled(true);
+    setTimeout(() => {
+      setIsButtonDisabled(false);
+    }, 60000);
+
+
+
+                        <button
+                            type="submit"
+                            onClick={handleSubmit} // Asignamos la función al hacer click
+                            disabled={isButtonDisabled}   // El botón se deshabilita según el estado
+                            className={`p-1 select-none transition-colors ${isButtonDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:text-red-500'
+                                }`}
+                            style={{
+                                alignSelf: 'flex-end',
+                                padding: '10px 20px',
+                                backgroundColor: isButtonDisabled ? '#ccc' : '#3483fa', // Color gris si está bloqueado
+                                color: '#fff',
+                                border: 'none',
+                                borderRadius: '6px',
+                                cursor: isButtonDisabled ? 'not-allowed' : 'pointer', // Cambia el cursor si está bloqueado
+                                fontWeight: 'bold'
+                            }}
+                        >
+                            {isButtonDisabled ? 'Espera 1 min, para relizar la proxima pregunta' : 'Preguntar'}
+                        </button>
+
+
+    */
+
+
+
+
+
+
+if (loading) return <Loading />
+import Loading from "@/components/Loading";
+const [loading, setLoading] = useState(false);
+    
+{`${(IsVerified === true)
+                            ? '¡Gracias por validar su usuario. Su cuenta ha sido verificada correctamente.!'
+                            : 'No se pudo validar el usuario, intente manualmente desde el panel copiando y pegando el codigo..'
+                            }`
+                        }
+
+
+
+'use client'
+import { useEffect, useState } from "react"
+
+
+const ssss = () => {
+
+       return (
+        <>
+
+        </>
+    );
+};
+
+export default ssss;
+
+
+
+                     <div className="group relative inline-block">
+                            <Link href="/store" className="hover:text-blue-500 whitespace-nowrap">
+                                
+                            </Link>
+                            <div className="absolute hidden group-hover:block bg-white shadow-lg p-2 min-w-[150px] z-50">
+                                <Link href="/store" className="block px-4 py-2 whitespace-nowrap">
+                                   
+                                </Link>
+                            </div>
+                        </div>
+
+
+
+                            const handleChange = (e) => {
+        // Limita la entrada a solo números (opcional, muy común para códigos de verificación)
+        const value = e.target.value.replace(/\D/g, '');
+        setCode(value);
+    };
