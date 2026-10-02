@@ -225,7 +225,7 @@ export default function StoreManageProducts() {
 
       {Products?.length > 0 ? (
 
-        <div className="w-[100%] mx-auto">
+        <div className="w-[70%] mx-auto">
           <div className="mb-3">
 
             <h1 className="text-3xl text-slate-500">
