@@ -19,7 +19,7 @@ const StoreSidebar = () => {
         { name: 'Responder preguntas', href: '/store/manager-comment', icon: NotebookText },
         { name: 'Agregar Producto', href: '/store/add-product', icon: SquarePlusIcon },
         { name: 'Editar Producto', href: '/store/manage-product', icon: SquarePenIcon },
-        { name: 'Tus Ventas', href: '/store/sell-products', icon: LayoutListIcon },
+        { name: 'Tus Ventas', href: '/store/Sell-products', icon: LayoutListIcon },
         { name: 'Tus Compras', href: '/store/orders', icon: Truck },
         { name: 'Compras Rechazadas', href: '/store/decline-BuyOrders', icon: ListX },
         { name: 'Ventas Rechazadas', href: '/store/decline-SellOrders', icon: ListX }
