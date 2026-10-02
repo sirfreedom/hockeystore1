@@ -142,6 +142,8 @@ export default function CreateStore() {
 
   const handlerConfirm = (isclose) => {
 
+    setShowConfirmModal(false);
+
     if (isclose === 0) //repondio que no
     {
       Update('contact', '');
