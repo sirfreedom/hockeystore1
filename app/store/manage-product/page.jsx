@@ -225,117 +225,112 @@ export default function StoreManageProducts() {
 
       {Products?.length > 0 ? (
 
-        <div className="w-[70%] mx-auto">
-          <div className="mb-3">
+<div className="w-full mx-auto">
+  <div className="mb-3">
+    <h1 className="text-2xl sm:text-3xl text-slate-500">
+      Tus <span className="text-slate-800 font-bold">Publicaciones</span>
+    </h1>
+    <p className="text-slate-400 text-xs sm:text-sm">
+      Gestiona el inventario y estado de tus publicaciones
+    </p>
+  </div>
 
-            <h1 className="text-3xl text-slate-500">
-              Tus <span className="text-slate-800 font-bold">Publicaciones</span>
-            </h1>
+  <div className="bg-white shadow-md border border-slate-200 rounded-xl overflow-hidden">
+    <div className="w-full">
+      <table className="w-full text-left border-collapse table-auto">
+        <thead className="bg-slate-50 border-b border-slate-200">
+          <tr>
+            <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Producto</th>
+            <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Precio</th>
+            <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Stock</th>
+            <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Estado</th>
+            <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500 text-center">Editar</th>
+            <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500 text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-slate-200">
+          {Products?.map((product) => (
+            <tr key={product?.id} className="hover:bg-slate-50 transition-colors">
 
-            <p className="text-slate-400 text-sm">Gestiona el inventario y estado de tus publicaciones</p>
-          </div>
+              {/* Producto */}
+              <td className="px-3 py-2.5">
+                <div className="flex items-center gap-2.5">
+                  <div className="h-9 w-9 shrink-0">
+                    <Image
+                      width={36}
+                      height={36}
+                      className="h-full w-full object-cover rounded-lg border border-slate-200 shadow-sm"
+                      src={product?.imgtext}
+                      alt={product?.descriptiontext || ''}
+                    />
+                  </div>
+                  <div className="text-xs sm:text-sm font-medium text-slate-900 line-clamp-2">
+                    {product.productname}
+                  </div>
+                </div>
+              </td>
 
-          <div className="bg-white shadow-md border border-slate-200 rounded-xl overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead className="bg-slate-50 border-b border-slate-200">
-                  <tr>
-                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Producto</th>
-                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Precio</th>
-                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Stock</th>
-                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Estado</th>
-                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500 text-center">Editar</th>
-                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500 text-center">Acciones</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200">
+              {/* Precio */}
+              <td className="px-3 py-2.5 whitespace-nowrap text-xs sm:text-sm font-semibold text-slate-700">
+                {currency} {product?.price?.toLocaleString('es-ES')}
+              </td>
 
-                  {Products?.map((product) => (
-                    <tr key={product?.id} className="hover:bg-slate-50 transition-colors">
+              {/* Stock */}
+              <td className="px-3 py-2.5 whitespace-nowrap text-xs sm:text-sm text-slate-600">
+                {product?.quantity} {product?.quantity > 1 ? 'uds' : 'ud'}
+              </td>
 
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center gap-4">
+              {/* Estado */}
+              <td className="px-3 py-2.5 whitespace-nowrap">
+                {product?.isnew ? (
+                  <span className="px-2 py-0.5 text-[11px] font-medium bg-green-100 text-green-700 rounded-full">Nuevo</span>
+                ) : (
+                  <span className="px-2 py-0.5 text-[11px] font-medium bg-blue-100 text-blue-700 rounded-full">Usado</span>
+                )}
+              </td>
 
-                          <div className="h-12 w-12 flex-shrink-0">
-                            <Image
-                              width={48}
-                              height={48}
-                              className='h-full w-full object-cover rounded-lg border border-slate-200 shadow-sm'
-                              src={product?.imgtext}
-                              alt={product?.descriptiontext}
-                            />
-                          </div>
+              {/* Editar */}
+              <td className="px-3 py-2.5 whitespace-nowrap text-center">
+                <button 
+                  onClick={() => handlerShowEdit(product.id)} 
+                  className="inline-flex items-center justify-center rounded-lg bg-white px-2.5 py-1 text-xs font-semibold text-slate-700 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50 transition-colors gap-1"
+                >
+                  <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                  </svg>
+                  <span>Modificar</span>
+                </button>
+              </td>
 
-                          <div className="text-sm font-medium text-slate-900">{product.productname}</div>
-                        </div>
-                      </td>
+              {/* Acciones */}
+              <td className="px-3 py-2.5 whitespace-nowrap text-center">
+                <div className="flex items-center justify-center gap-1.5">
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input
+                      type="checkbox"
+                      className="sr-only peer"
+                      checked={product?.isdisabled !== true}
+                      onChange={() => toggleStock(product.id, product?.isdisabled)}
+                    />
+                    <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+                  </label>
 
-                      {/* Precio */}
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-slate-700">
-                        {currency} {product?.price.toLocaleString('es-ES')}
-                      </td>
+                  <button 
+                    onClick={() => handlerShowConfirm(product?.id)} 
+                    className="text-red-500 hover:bg-red-50 p-1.5 rounded-full active:scale-95 transition-all"
+                  >
+                    <Trash2Icon size={16} />
+                  </button>
+                </div>
+              </td>
 
-                      {/* Cantidad */}
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600">
-                        {product?.quantity} {product?.quantity > 1 ? 'unidades' : 'unidad'}
-                      </td>
-
-                      {/* Estado con Badge */}
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {product?.isnew ?
-                          (
-                            <span className="px-2.5 py-1 text-xs font-medium bg-green-100 text-green-700 rounded-full">Nuevo</span>
-                          ) : (
-                            <span className="px-2.5 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded-full">Usado</span>
-                          )}
-                      </td>
-
-                      <td className="px-6 py-4 whitespace-nowrap text-center">
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
-                          <button onClick={() => handlerShowEdit(product.id)} className="w-full sm:w-auto inline-flex items-center justify-center rounded-lg bg-white px-3 py-1.5 text-sm font-semibold text-slate-700 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50 transition-colors gap-1.5">
-                            <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
-                            Modificar
-                          </button>
-                        </div>
-                      </td>
-
-                      <td className="px-6 py-4 whitespace-nowrap text-center">
-
-                        <label className="relative inline-flex items-center cursor-pointer gap-2">
-                          <input
-                            type="checkbox"
-                            className="sr-only peer"
-                            checked={product?.isdisabled !== true}
-                            onChange={() => toggleStock(product.id, product?.isdisabled)}
-                          />
-                          <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                          {product?.isdisabled !== true ? (
-                            <span className="flex items-center gap-1.5 text-sm font-medium text-green-700 bg-green-100 px-2.5 py-1 rounded-full">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                              </svg>
-                            </span>
-                          ) : (
-                            <span className="flex items-center gap-1.5 text-sm font-medium text-red-700 bg-red-100 px-2.5 py-1 rounded-full">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                            </span>
-                          )}
-                        </label>
-
-                        <button onClick={() => handlerShowConfirm(product?.id)} className=" text-red-500 hover:bg-red-50 p-2.5 rounded-full active:scale-95 transition-all">
-                          <Trash2Icon size={18} />
-                        </button>
-                      </td>
-
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
       ) : (
         <div className="flex h-[60vh] flex-col items-center justify-center text-center">
           <div className="rounded-full bg-slate-100 p-6 mb-4">
