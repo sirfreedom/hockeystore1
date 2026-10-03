@@ -1,81 +1,128 @@
 'use client'
-import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { HomeIcon, LayoutListIcon, SquarePenIcon, SquarePlusIcon, Truck, ListX, NotebookText, User, UserRoundPen } from "lucide-react";
+import { 
+  HomeIcon, 
+  LayoutListIcon, 
+  SquarePenIcon, 
+  SquarePlusIcon, 
+  Truck, 
+  ListX, 
+  NotebookText, 
+  User, 
+  UserRoundPen 
+} from "lucide-react";
 import Link from "next/link";
 import { getKey } from "@/Api/BaseHelper";
 import CheckLogin from "@/components/CheckLogin";
 
 const StoreSidebar = () => {
+  const pathname = usePathname();
+  const LogoImg = getKey('logoimgtext');
+  const UserName = getKey('username');
 
-    const pathname = usePathname();
-    const LogoImg = getKey('logoimgtext');
-    const UserName = getKey('username');
-
-    const sidebarLinks = [
+  // Estructura organizada por secciones para mayor claridad visual
+  const sidebarGroups = [
+    {
+      title: "General",
+      links: [
         { name: 'Dashboard', href: '/store', icon: HomeIcon },
         { name: 'Modificar Perfil', href: '/store/store-edit', icon: User },
         { name: 'Cambiar Foto Perfil', href: '/store/store-photo', icon: UserRoundPen },
-        { name: 'Responder preguntas', href: '/store/manager-comment', icon: NotebookText },
+      ]
+    },
+    {
+      title: "Catálogo",
+      links: [
         { name: 'Agregar Producto', href: '/store/add-product', icon: SquarePlusIcon },
         { name: 'Editar Producto', href: '/store/manage-product', icon: SquarePenIcon },
+        { name: 'Responder Preguntas', href: '/store/manager-comment', icon: NotebookText },
+      ]
+    },
+    {
+      title: "Órdenes y Transacciones",
+      links: [
         { name: 'Tus Ventas', href: '/store/Sell-products', icon: LayoutListIcon },
         { name: 'Tus Compras', href: '/store/orders', icon: Truck },
+        { name: 'Ventas Rechazadas', href: '/store/decline-SellOrders', icon: ListX },
         { name: 'Compras Rechazadas', href: '/store/decline-BuyOrders', icon: ListX },
-        { name: 'Ventas Rechazadas', href: '/store/decline-SellOrders', icon: ListX }
-    ]
+      ]
+    }
+  ];
 
-    useEffect(() => {
+  return (
+    <>
+      <CheckLogin />
 
-    }, [])
+      <div className="flex h-full flex-col gap-3 border-r border-slate-200 w-full sm:w-60 min-w-60 bg-white p-3 text-slate-700 select-none">
+        
+        {/* Encabezado Perfil compacto */}
+        {LogoImg && (
+          <div className="flex flex-col items-center gap-2 pt-2 pb-3 border-b border-slate-100">
+            <Link
+              href="/store/store-photo"
+              className="relative w-20 h-20 rounded-full shadow-sm overflow-hidden group cursor-pointer block border border-slate-200"
+            >
+              <img
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                src={LogoImg}
+                alt="Foto de perfil"
+              />
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <span className="text-white text-[10px] font-medium text-center px-1">
+                  Cambiar
+                </span>
+              </div>
+            </Link>
+            <p className="text-sm font-semibold text-slate-800 tracking-wide text-center truncate max-w-full px-2">
+              {UserName}
+            </p>
+          </div>
+        )}
 
-    return (
+        {/* Lista de enlaces compacta */}
+        <div className="flex flex-col gap-4 overflow-y-auto py-1">
+          {sidebarGroups.map((group, groupIdx) => (
+            <div key={groupIdx} className="flex flex-col gap-1">
+              <span className="px-2 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                {group.title}
+              </span>
+              
+              <div className="flex flex-col gap-0.5">
+                {group.links.map((link) => {
+                  const isActive = pathname === link.href;
+                  const Icon = link.icon;
 
-       <>
-            <CheckLogin></CheckLogin>
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`relative flex items-center gap-2.5 px-2.5 py-1.5 text-xs rounded-md transition-all duration-150 ${
+                        isActive
+                          ? 'bg-emerald-50 text-emerald-700 font-semibold shadow-sm'
+                          : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                      }`}
+                    >
+                      <Icon 
+                        size={16} 
+                        className={`shrink-0 ${isActive ? 'text-emerald-600' : 'text-slate-400'}`} 
+                      />
+                      <span className="truncate">{link.name}</span>
 
-            <div className="flex h-full flex-col gap-5 border-r border-slate-200 w-full sm:w-60 min-w-60">
-
-                {(LogoImg) &&
-                    (
-                        <div className="flex flex-col gap-3 justify-center items-center pt-6">
-                            <Link
-                                href="/store/store-photo"
-                                className="relative w-28 h-28 sm:w-44 sm:h-44 rounded-full shadow-md overflow-hidden group cursor-pointer block"
-                            >
-                                <img
-                                    className="w-full h-full object-cover"
-                                    src={LogoImg}
-                                    alt="Foto de perfil"
-                                />
-
-                                <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <span className="text-white text-xs font-medium text-center px-2">
-                                        Cambiar imagen
-                                    </span>
-                                </div>
-                            </Link>
-
-                            <p className="text-slate-700 font-medium text-center">{UserName}</p>
-                        </div>
-                    )}
-
-                <div className="flex flex-col w-full">
-                    {
-                        sidebarLinks.map((link, index) => (
-                            <Link key={index} href={link.href} className={`relative flex items-center gap-3 text-slate-500 hover:bg-slate-50 p-3 px-4 transition ${pathname === link.href && 'bg-slate-100 text-slate-700 font-medium'}`}>
-                                <link.icon size={18} className="shrink-0" />
-                                <p className="text-sm">{link.name}</p>
-                                {pathname === link.href && <span className="absolute bg-green-500 right-0 top-1.5 bottom-1.5 w-1 sm:w-1.5 rounded-l"></span>}
-                            </Link>
-                        ))
-                    }
-                </div>
+                      {/* Indicador activo lateral */}
+                      {isActive && (
+                        <span className="absolute right-1 top-1/2 -translate-y-1/2 w-1 h-4 bg-emerald-500 rounded-full" />
+                      )}
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
-       
-       </>
+          ))}
+        </div>
 
-    )
-}
+      </div>
+    </>
+  );
+};
 
-export default StoreSidebar
+export default StoreSidebar;
