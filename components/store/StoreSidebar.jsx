@@ -34,45 +34,49 @@ const StoreSidebar = () => {
        <>
             <CheckLogin></CheckLogin>
 
-           <div className="flex h-full flex-col gap-5 border-r border-slate-200 w-full sm:w-60 min-w-60">
+   <div className="flex h-full flex-col gap-5 border-r border-slate-200 w-full sm:min-w-60">
 
-                {(LogoImg) &&
-                    (
-                        <div className="flex flex-col gap-3 justify-center items-center pt-6">
-                            <Link
-                                href="/store/store-photo"
-                                className="relative w-28 h-28 sm:w-44 sm:h-44 rounded-full shadow-md overflow-hidden group cursor-pointer block"
-                            >
-                                <img
-                                    className="w-full h-full object-cover"
-                                    src={LogoImg}
-                                    alt="Foto de perfil"
-                                />
+                {LogoImg && (
+                    <div className="flex flex-col gap-3 justify-center items-center pt-8">
+                        <Link
+                            href="/store/store-photo"
+                            className="relative w-28 h-28 sm:w-44 sm:h-44 rounded-full shadow-md overflow-hidden group cursor-pointer block"
+                        >
+                            <img
+                                className="w-full h-full object-cover"
+                                src={LogoImg}
+                                alt="Foto de perfil"
+                                width={180}
+                                height={180}
+                            />
 
-                                <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <span className="text-white text-xs font-medium text-center px-2">
-                                        Cambiar imagen
-                                    </span>
-                                </div>
-                            </Link>
+                            <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span className="text-white text-xs font-medium text-center px-2">
+                                    Cambiar imagen
+                                </span>
+                            </div>
+                        </Link>
 
-                            <p className="text-slate-700 font-medium text-center">{UserName}</p>
-                        </div>
-                    )}
+                        <p className="text-slate-700 font-medium text-center">{UserName}</p>
+                    </div>
+                )}
 
-                <div className="flex flex-col w-full">
-                    {
-                        sidebarLinks.map((link, index) => (
-                            <Link key={index} href={link.href} className={`relative flex items-center gap-3 text-slate-500 hover:bg-slate-50 p-3 px-4 transition ${pathname === link.href && 'bg-slate-100 text-slate-700 font-medium'}`}>
-                                <link.icon size={18} className="shrink-0" />
-                                <p className="text-sm">{link.name}</p>
-                                {pathname === link.href && <span className="absolute bg-green-500 right-0 top-1.5 bottom-1.5 w-1 sm:w-1.5 rounded-l"></span>}
-                            </Link>
-                        ))
-                    }
+                <div className="mt-4 sm:mt-6">
+                    {sidebarLinks.map((link, index) => (
+                        <Link 
+                            key={index} 
+                            href={link.href} 
+                            className={`relative flex items-center gap-3 text-slate-500 hover:bg-slate-50 p-2.5 transition ${pathname === link.href ? 'bg-slate-100 text-slate-600 font-medium' : ''}`}
+                        >
+                            <link.icon size={18} className="ml-2 sm:ml-5 shrink-0" />
+                            <p className="text-sm sm:text-base">{link.name}</p>
+                            {pathname === link.href && (
+                                <span className="absolute bg-green-500 right-0 top-1.5 bottom-1.5 w-1 sm:w-1.5 rounded-l"></span>
+                            )}
+                        </Link>
+                    ))}
                 </div>
             </div>
-
         </>
 
     )
