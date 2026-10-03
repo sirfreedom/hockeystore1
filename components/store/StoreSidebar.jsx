@@ -34,7 +34,7 @@ const StoreSidebar = () => {
        <>
             <CheckLogin></CheckLogin>
 
-            <div className="flex h-full flex-col gap-5 border-r border-slate-200 w-full sm:w-60 min-w-60">
+           <div className="flex h-full flex-col gap-5 border-r border-slate-200 w-full sm:w-60 min-w-60">
 
                 {(LogoImg) &&
                     (
