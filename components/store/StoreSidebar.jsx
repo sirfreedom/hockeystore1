@@ -53,7 +53,7 @@ const StoreSidebar = () => {
     <>
       <CheckLogin />
 
-      <div className="flex h-full flex-col gap-3 border-r border-slate-200 w-full sm:w-60 min-w-60 bg-white p-3 text-slate-700 select-none">
+      <div className="hidden sm:block flex h-full flex-col gap-3 border-r border-slate-200 w-full sm:w-60 min-w-60 bg-white p-3 text-slate-700 select-none">
         
         {/* Encabezado Perfil compacto */}
         {LogoImg && (

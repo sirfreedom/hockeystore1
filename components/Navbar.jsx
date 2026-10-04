@@ -8,6 +8,7 @@ import useCartStore from '@/lib/features/cart/useCartStore';
 import useOrderStore from '@/lib/features/order/useOrderStore';
 import { Get } from '@/Api/AppStoreConfigHelper';
 import useUserStore from '@/lib/features/user/useUserStore';
+import MobileMenu from '@/components/MobileMenu';
 
 const Navbar = () => {
 
@@ -40,8 +41,6 @@ const Navbar = () => {
         }
     }, [clearUser]);
 
-
-
     const handleSearch = (e) => {
         e.preventDefault();
         router.push(`/shop?search=${search}`, { scroll: false });
@@ -65,17 +64,19 @@ const Navbar = () => {
     };
 
     return (
+
         <nav className="relative bg-white w-full">
             <div className="w-full">
                 <div className="flex items-center justify-between w-full px-4 py-2 transition-all">
 
-                    <Link href="/" className="relative text-4xl font-semibold text-slate-700 shrink-0">
+                    <Link href="/" className="relative text-2xl sm:text-4xl font-semibold text-slate-700 shrink-0">
                         <span className="text-green-600">{AppStoreConfig?.nameapp}</span>
                         {AppStoreConfig?.extranameapp}
-                        <p className="absolute text-xs font-semibold -top-1 -right-8 px-3 p-0.5 rounded-full flex items-center gap-2 text-white bg-green-500">
+                        <p className="absolute text-[10px] sm:text-xs font-semibold -top-1 -right-6 sm:-right-8 px-2 sm:px-3 p-0.5 rounded-full flex items-center gap-2 text-white bg-green-500">
                             beta
                         </p>
                     </Link>
+
 
                     {/* Link Sitio */}
                     <div className="hidden sm:flex items-center gap-4 lg:gap-6 text-slate-600 ml-4">
@@ -97,7 +98,6 @@ const Navbar = () => {
                                 required
                             />
                         </form>
-
 
                         {authenticated && (
                             <div className="group relative inline-block">
@@ -227,18 +227,25 @@ const Navbar = () => {
                                 </div>
                             )}
                         </div>
-
                     </div>
 
-
                     {/* Mobile Menu Button */}
-                    {!authenticated && (
+                    {!authenticated ? (
                         <div className="sm:hidden">
-                            <button className="px-7 py-1.5 bg-indigo-500 hover:bg-indigo-600 text-sm transition text-white rounded-full">
-                                Login mobile
+                            <button className="px-7 py-1.5 bg-indigo-500 hover:bg-indigo-600 text-sm transition text-white rounded-full" onClick={handlerLogin}>
+                                Login
                             </button>
                         </div>
-                    )}
+                    ) : (
+
+                        <div className="sm:hidden">
+
+                            {/* Menu Mobile */}
+                            <MobileMenu></MobileMenu>
+
+                        </div>
+                    )
+                    }
 
                 </div>
             </div>

@@ -244,8 +244,8 @@ export default function StoreManageProducts() {
             <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Precio</th>
             <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Stock</th>
             <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Estado</th>
-            <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500 text-center">Editar</th>
-            <th className="px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500 text-center">Acciones</th>
+            <th className="hidden sm:block px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500 text-center">Editar</th>
+            <th className="hidden sm:block px-3 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500 text-center">Acciones</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-slate-200">
@@ -290,7 +290,7 @@ export default function StoreManageProducts() {
               </td>
 
               {/* Editar */}
-              <td className="px-3 py-2.5 whitespace-nowrap text-center">
+              <td className="hidden sm:block px-3 py-2.5 whitespace-nowrap text-center">
                 <button 
                   onClick={() => handlerShowEdit(product.id)} 
                   className="inline-flex items-center justify-center rounded-lg bg-white px-2.5 py-1 text-xs font-semibold text-slate-700 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50 transition-colors gap-1"
@@ -303,7 +303,7 @@ export default function StoreManageProducts() {
               </td>
 
               {/* Acciones */}
-              <td className="px-3 py-2.5 whitespace-nowrap text-center">
+              <td className="hidden sm:block px-3 py-2.5 whitespace-nowrap text-center">
                 <div className="flex items-center justify-center gap-1.5">
                   <label className="relative inline-flex items-center cursor-pointer">
                     <input

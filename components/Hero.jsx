@@ -22,8 +22,8 @@ const Hero = () => {
 
     return (
         <>
-
-            <div className='mx-6'>
+            <div className='mx-6 hidden sm:block' >
+                
                 <div className='flex max-xl:flex-col gap-8 max-w-7xl mx-auto my-10'>
 
                     {HeadSlide?.filter(item => item.orden === 0).map((item, index) => (
