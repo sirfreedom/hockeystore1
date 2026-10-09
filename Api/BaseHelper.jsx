@@ -1,4 +1,4 @@
-const BASEURL = 'https://sirfreedom.somee.com/'; //produccion
+const BASEURL = 'https://hockeystore.somee.com/'; //produccion
 //const BASEURL = 'https://localhost:5000/'; //desarrollo
 //const BASEURL = 'http://localhost:8080/'; //Docker
 export const MASTERTOKEN = 'KNj5WcPJ9n9TShJRxNVt2znWa+GBs7ci9X4lW0XPTSBcN6GrSAuqa1hlDeeg/Rh7';
